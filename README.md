@@ -1,0 +1,2 @@
+# wxbotForGroupChat
+My wechat bot
