@@ -36,7 +36,7 @@ today = []
 #这是一个记录今天打卡成员的list
 
 #创建一个新的打卡object
-groupName = "你想要的groupname"
+groupName = "汪采薇求职群"
 day = itchat.new_instance()
 day.auto_login(hotReload=True,enableCmdQR=2)
 
@@ -313,7 +313,6 @@ wc = WordCloud(background_color='white',  # 背景颜色
     
 
 
-<<<<<<< HEAD
 ```python
 #wordcloud
 #需要pip install wordcloud 以及pip install jieba
@@ -321,7 +320,3 @@ wc = WordCloud(background_color='white',  # 背景颜色
 
 
 ```
-=======
-
-    
->>>>>>> 345862032b0be49f035b55aba5821259fe864a33
