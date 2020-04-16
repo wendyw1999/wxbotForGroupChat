@@ -149,50 +149,52 @@ check_daka("导师管理小组",today) #replace this string with your group chat
 
 
 ```python
-workbook=xlsxwriter.Workbook("群聊用户名单.xlsx")
-for i in range(0,len(roomlist)-1):
-    #根据群聊名称在表单中创建工作薄
-    worksheet=workbook.add_worksheet(roomslist[i]['NickName'])
-    #添加表头
-    worksheet.write(0,0,"微信名称")
-    worksheet.write(0,1,"群备注")
-    #获取群聊用户列表
-    myroom=chat.search_chatrooms(name=roomslist[i]['NickName'])
-    #获取群聊名称
-    gsp=chat.update_chatroom(myroom[0]['UserName'], detailedMember=True)
+roomlist = chat.get_chatrooms()[0]
+```
 
-    print("群名：{} \t 人数：{}".format(roomslist[i]['NickName'],len(gsp['MemberList'])))
 
-    nickname=[]
-    displayname=[]
+```python
+def chatroom_stats():
+    workbook=xlsxwriter.Workbook("群聊用户名单.xlsx")
+    for i in range(0,len(roomlist)-1):
+        #根据群聊名称在表单中创建工作薄
+        worksheet=workbook.add_worksheet(roomslist[i]['NickName'])
+        #添加表头
+        worksheet.write(0,0,"微信名称")
+        worksheet.write(0,1,"群备注")
+        #获取群聊用户列表
+        myroom=chat.search_chatrooms(name=roomslist[i]['NickName'])
+        #获取群聊名称
+        gsp=chat.update_chatroom(myroom[0]['UserName'], detailedMember=True)
 
-    for c in gsp['MemberList']:
-        nickname.append(c['NickName'])
-        displayname.append(c['DisplayName'])
-    #将用户信息写入相应的工作薄中
-    for x in range(len(gsp['MemberList'])):
-        worksheet.write(x+1,0,nickname[x])
-        worksheet.write(x+1,1,displayname[x])
-    #输出一点提示信息
-    print("sheet {} finished".format(roomslist[i]['NickName']))
-#关闭工作表
-workbook.close()
+        print("群名：{} \t 人数：{}".format(roomslist[i]['NickName'],len(gsp['MemberList'])))
+
+        nickname=[]
+        displayname=[]
+
+        for c in gsp['MemberList']:
+            nickname.append(c['NickName'])
+            displayname.append(c['DisplayName'])
+        #将用户信息写入相应的工作薄中
+        for x in range(len(gsp['MemberList'])):
+            worksheet.write(x+1,0,nickname[x])
+            worksheet.write(x+1,1,displayname[x])
+        #输出一点提示信息
+        print("sheet {} finished".format(roomslist[i]['NickName']))
+    #关闭工作表
+    workbook.close()
 #————————————————
 #版权声明：本文为CSDN博主「King_key」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
 #原文链接：https://blog.csdn.net/King_key/java/article/details/100052875
-```
-
-
-```python
 
 ```
 
 
 ```python
-
+chatroom_stats()
 ```
 
-### 2. 获取好友信息
+# 获取好友信息
 
 - 1. 好友城市分布
 - 2. 好友性别分布
@@ -286,7 +288,7 @@ plt.show()
 ![png](output_20_0.png)
 
 
-### 3. wordcloud
+###  wordcloud
 - 1. 需要pip install wordcloud 以及pip install jieba，在国外比较好下载，国内需要使用国内镜像 + defaulttime 延时
 
 
@@ -311,5 +313,15 @@ wc = WordCloud(background_color='white',  # 背景颜色
     
 
 
+<<<<<<< HEAD
+```python
+#wordcloud
+#需要pip install wordcloud 以及pip install jieba
+#在国外比较好下载，国内需要使用国内镜像 + defaulttime 延时
+
+
+```
+=======
 
     
+>>>>>>> 345862032b0be49f035b55aba5821259fe864a33
